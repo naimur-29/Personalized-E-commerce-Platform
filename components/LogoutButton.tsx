@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { useTransition } from "react";
 import { LogoutAction } from "@/actions/logout";
 import { navigate } from "@/actions/navigate";
+import { Loader2 } from "lucide-react";
 
 export default function LogoutButton() {
   const [isPending, startTransition] = useTransition();
@@ -19,8 +20,9 @@ export default function LogoutButton() {
   };
 
   return (
-    <Button onClick={handleLogout}>
-      {isPending ? "Loading..." : "Logout"}
+    <Button onClick={handleLogout} disabled={isPending}>
+      {isPending && <Loader2 className="animate-spin" />}
+      {"Logout"}
     </Button>
   );
 }

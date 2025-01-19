@@ -7,6 +7,7 @@ import { generateAuthTokensAction } from "@/features/auth/actions/verifyUser";
 import { useAuthContext } from "@/contexts/authContext";
 import { navigate } from "@/actions/navigate";
 import { redirect } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 type propType = {
   token: string | null;
@@ -39,7 +40,8 @@ export default function VerifyUser({ token, context }: propType) {
   return (
     <div className="flex justify-end">
       <Button disabled={isPending} onClick={handleLoginBtn}>
-        {isPending ? "Loading..." : "Login"}
+        {isPending && <Loader2 className="animate-spin" />}
+        Login
       </Button>
     </div>
   );

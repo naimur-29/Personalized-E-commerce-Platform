@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthContextProvider } from "@/contexts/authContext";
+import { ShoppingCart } from "lucide-react";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +29,27 @@ export default function RootLayout({
     <html lang="en">
       <AuthContextProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
         >
+          <nav className="flex items-center justify-between p-2 lg:px-6 fixed top-0 h-[70px] w-full z-50 bg-transparent bg-[linear-gradient(to_bottom,_#02984e77_10%,_transparent_100%)]">
+            <Link
+              href="/"
+              className="text-secondary text-2xl lg:text-3xl font-serif [text-shadow:0_2px_4px_#02984e77]"
+            >
+              elixir.
+            </Link>
+
+            <Link
+              href="/login"
+              className="relative flex items-center justify-center rounded-full aspect-square bg-[#02984e77] w-8"
+            >
+              <ShoppingCart className="text-secondary" size={28} />
+              <span className="flex items-center justify-center absolute -top-2 -right-1 min-w-4 re rounded-full text-secondary text-sm bg-red-500">
+                {0}
+              </span>
+            </Link>
+          </nav>
+
           {children}
         </body>
       </AuthContextProvider>
